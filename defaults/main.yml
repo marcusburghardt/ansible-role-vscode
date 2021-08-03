@@ -1,0 +1,37 @@
+---
+# This granular approach make the module more powerful.
+# Observe the first letter of True or False (uppercase).
+# Some tasks need escalated permissions. This will be done with "become"
+# parameter of Ansible. The default is "sudo". So, ensure your username has
+# sudo permissions to install packages and change some system files (repos).
+# Then, you can call the ansible-playbook command with the -K option.
+available_tasks:
+  - { enabled: True,  name: 'configure_vscode' }  # Requires -K option
+
+# This module will install the VSCode for you and customize it according with
+# the development environment designed by this module.
+# If you want to install more repositories, here is the place.
+linux_repos:
+  - { enabled: True,  state: 'present', name: 'VSCode',
+      repo: 'https://packages.microsoft.com/yumrepos/vscode', 
+      gpgcheck: '1', 
+      gpgkey: 'https://packages.microsoft.com/keys/microsoft.asc' }
+
+# The "installed" parameter determines if the extension will be installed or
+# removed. Note that if your VSCode is opened, may be needed to restart it
+# to commit some extensions changes.
+vscode_extensions:
+  - { enabled: True,  installed: True,  name: 'streetsidesoftware.code-spell-checker' }
+  - { enabled: True,  installed: True,  name: 'ms-vscode.cpptools' }
+  - { enabled: True,  installed: True,  name: 'vscode-icons-team.vscode-icons' }
+  - { enabled: True,  installed: True,  name: 'ms-python.python' }
+  - { enabled: True,  installed: True,  name: 'xaver.clang-format' }
+  - { enabled: True,  installed: True,  name: 'adamvoss.vscode-languagetool-en' }
+  - { enabled: True,  installed: True,  name: 'adamvoss.vscode-languagetool' }
+  - { enabled: True,  installed: True,  name: 'golang.Go' }
+  - { enabled: True,  installed: True,  name: 'leodevbro.blockman' }
+  - { enabled: True,  installed: True,  name: 'coenraads.bracket-pair-colorizer-2' }
+  - { enabled: True,  installed: True,  name: 'vscode-icons-team.vscode-icons' }
+  - { enabled: True,  installed: True,  name: 'eamodio.gitlens' }
+  - { enabled: True,  installed: True,  name: 'vscodevim.vim' }
+...

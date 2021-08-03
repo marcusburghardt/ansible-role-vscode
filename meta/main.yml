@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Marcus Burghardt
+  description: Role for ensuring VSCODE is ready to be used.
+  license: MPL
+  min_ansible_version: 2.9
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+  galaxy_tags:
+    - development
+    - devop
+    - vscode
+dependencies: []
+  

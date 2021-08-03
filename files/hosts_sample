@@ -1,0 +1,6 @@
+[linux:children]
+configure_vscode
+
+# Here you add the hosts in the desired tasks
+[configure_vscode]
+localhost ansible_connection=local

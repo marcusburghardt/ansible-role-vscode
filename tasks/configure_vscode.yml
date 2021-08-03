@@ -1,0 +1,76 @@
+---
+- name: "{{ role_name }} | {{ task.name }} | Ensure VSCode repository"
+  become: yes
+  yum_repository:
+    name: '{{ item.name }}'
+    description: 'Visual Studio Code'
+    baseurl: '{{ item.repo }}'
+    gpgcheck: '{{ item.gpgcheck }}'
+    gpgkey: '{{ item.gpgkey }}'
+    enabled: yes
+    state: '{{ item.state }}'
+  loop: '{{ linux_repos }}'
+  register: result_repo_vscode
+  when:
+    - item.enabled
+    - ansible_facts['os_family']|lower == "redhat"
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure VSCode is installed and updated"
+  become: yes
+  package:
+    name: 'code'
+    state: present
+  register: result_install_vscode
+  when:
+    - ansible_facts['system']|lower == "linux"
+    - result_repo_vscode is success
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the workspaces folder for VSCode"
+  file:
+    path: '{{ vscode_workspaces_folder }}'
+    state: directory
+    mode: '0755'
+  register: result_vscode_workspaces_folder
+  when: result_install_vscode is success
+
+- name: "{{ role_name }} | {{ task.name }} | Locate the {{ vscode_workspaces_config_file }} file of VSCode"
+  find:
+    paths: '{{ vscode_workspaces_folder }}'
+    recurse: yes
+    patterns: '{{ vscode_workspaces_config_file }}'
+  register: result_vscode_workspaces_file
+  when: result_vscode_workspaces_folder is success
+
+- name: "{{ role_name }} | {{ task.name }} | First execution of VSCode"
+  debug:
+    msg:
+      - "If VSCode was just installed, is necessary to open it for create the initial configurations."
+      - "Also, add some folder in your VSCode workspace to create the workspaces configurations file."
+  when: result_vscode_workspaces_file.matched == 0
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the desired extensions are installed in VSCode"
+  command:
+    argv:
+      - 'code'
+      - '--install-extension'
+      - '{{ item.name }}'
+    warn: yes
+  loop: '{{ vscode_extensions }}'
+  register: result_vscode_extensions_add
+  when:
+    - item.enabled
+    - item.installed
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the undesired extensions are uninstalled in VSCode"
+  command:
+    argv:
+      - 'code'
+      - '--uninstall-extension'
+      - '{{ item.name }}'
+    warn: yes
+  loop: '{{ vscode_extensions }}'
+  register: result_vscode_extensions_remove
+  when:
+    - item.enabled
+    - not item.installed
+...
