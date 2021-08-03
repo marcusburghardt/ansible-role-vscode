@@ -34,4 +34,5 @@ vscode_extensions:
   - { enabled: True,  installed: True,  name: 'vscode-icons-team.vscode-icons' }
   - { enabled: True,  installed: True,  name: 'eamodio.gitlens' }
   - { enabled: True,  installed: True,  name: 'vscodevim.vim' }
+  - { enabled: True,  installed: True,  name: 'docsmsft.docs-markdown' }
 ...
