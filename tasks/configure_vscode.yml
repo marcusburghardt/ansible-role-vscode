@@ -66,7 +66,7 @@
   when:
     - item.enabled
     - item.state == "directory"
-    - item.path == '{{ main_dir }}'
+    - item.path == main_dir
     - result_vscode_workspaces_file.matched == 1
 
 - name: "{{ role_name }} | {{ task.name }} | Ensure the desired extensions are installed in VSCode"
