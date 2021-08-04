@@ -73,4 +73,5 @@
   when:
     - item.enabled
     - not item.installed
+  ignore_errors: yes
 ...

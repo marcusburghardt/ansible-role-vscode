@@ -64,6 +64,13 @@ This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this  
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+Interesting References
+------------------
+
+ComplianceAsCode Extension
+- https://marketplace.visualstudio.com/items?itemName=ggbecker.content-navigator
+- https://complianceascode.github.io/template/2019/12/19/content-navigator-a-vscode-extension.html
+
 Author Information
 ------------------
 
