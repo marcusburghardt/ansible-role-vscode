@@ -49,6 +49,26 @@
       - "VSCode Menu: File -> Add Folder to Workspace..."
   when: result_vscode_workspaces_file.matched == 0
 
+- name: "{{ role_name }} | {{ task.name }} | Ensure the main workspace folder is set in VSCode"
+  command:
+    chdir: '{{ role_path }}/files'
+    argv:
+      - '{{ ansible_python_interpreter }}'
+      - vscode_settings.py
+      - '{{ item.action }}'
+      - '{{ result_vscode_workspaces_file.files[0].path }}'
+      - 'folders'
+      - 'path'
+      - '{{ item.path }}'
+    warn: yes
+  loop: '{{ vscode_workspaces }}'
+  register: result_workspaces_reference
+  when:
+    - item.enabled
+    - item.state == "directory"
+    - item.path == '{{ main_dir }}'
+    - result_vscode_workspaces_file.matched == 1
+
 - name: "{{ role_name }} | {{ task.name }} | Ensure the desired extensions are installed in VSCode"
   command:
     argv:
