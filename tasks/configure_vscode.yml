@@ -46,6 +46,7 @@
     msg:
       - "If VSCode was just installed, is necessary to open it for create the initial configurations."
       - "Also, add some folder in your VSCode workspace to create the workspaces configurations file."
+      - "VSCode Menu: File -> Add Folder to Workspace..."
   when: result_vscode_workspaces_file.matched == 0
 
 - name: "{{ role_name }} | {{ task.name }} | Ensure the desired extensions are installed in VSCode"
