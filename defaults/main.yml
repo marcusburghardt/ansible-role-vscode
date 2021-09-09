@@ -42,7 +42,6 @@ vscode_extensions:
   - { enabled: True,  installed: True,  name: 'leodevbro.blockman' }
   - { enabled: True,  installed: True,  name: 'vscode-icons-team.vscode-icons' }
 
-
 # The main_dir will be included as a Folder in your VSCode Workspace.
 main_dir: "{{ ansible_facts['user_dir'] }}/OpenSCAP"
 
@@ -50,5 +49,5 @@ main_dir: "{{ ansible_facts['user_dir'] }}/OpenSCAP"
 # In this case, we are including the "main_dir" folder in the existing workspace.
 vscode_workspaces:
   - { enabled: True, state: 'directory', action: 'add', name: 'OpenSCAP', path: '{{ main_dir }}' }
-
 ...
+
