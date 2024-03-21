@@ -62,8 +62,8 @@
       - "{{ item.path }}"
   loop: "{{ vscode_workspaces }}"
   register: result_workspaces_reference
-  changed_when: result_workspaces_reference.rc == "1"
-  failed_when: result_workspaces_reference.rc not in [0,1]
+  changed_when: result_workspaces_reference.rc == "0"
+  failed_when: result_workspaces_reference.rc not in [1,2]
   when:
     - item.enabled
     - item.state == "directory"
