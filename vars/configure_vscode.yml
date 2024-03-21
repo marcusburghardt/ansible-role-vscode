@@ -1,4 +1,69 @@
 ---
-# This file has the custom configurations for:
-# configure_vscode
+# This file has the custom configurations for configure_vscode task.
+
+vscode_repo:
+  - { enabled: true,  state: 'present', name: 'VSCode',
+      description: 'Visual Studio Code',
+      repo: 'https://packages.microsoft.com/yumrepos/vscode',
+      gpgcheck: '1',
+      gpgkey: 'https://packages.microsoft.com/keys/microsoft.asc' }
+
+vscode_workspaces_folder: "{{ ansible_facts['user_dir'] }}/.config/Code/Workspaces"
+vscode_workspaces_config_file: "workspace.json"
+
+# The "installed" parameter determines if the extension will be installed or removed.
+# Note that if your VSCode is opened, may be needed to restart it to commit some extensions
+# changes. Be conservative with extensions because every new extension is an extra load to
+# VSCode. You probably want to increase its efficiency instead of making it slower.
+# If including extensions, organize them by reasonable categories and alphabetically within
+# categories.
+vscode_extensions:
+  # Extensions to avoid typos and allow better comments
+  - { enabled: true, installed: true, name: 'adamvoss.vscode-languagetool-en' }
+  - { enabled: true, installed: true, name: 'adamvoss.vscode-languagetool' }
+  - { enabled: true, installed: true, name: 'streetsidesoftware.code-spell-checker' }
+  - { enabled: false, installed: true, name: 'cschlosser.doxdocgen' }
+
+  # Extensions for better navigation
+  - { enabled: true, installed: true, name: 'eamodio.gitlens' }
+  - { enabled: true, installed: true, name: 'leodevbro.blockman' }
+  - { enabled: true, installed: true, name: 'vscode-icons-team.vscode-icons' }
+
+  # Extensions for specific languages and formats
+  # Ansible and YAML
+  - { enabled: true, installed: true, name: 'redhat.ansible' }
+  - { enabled: true, installed: true, name: 'redhat.vscode-yaml' }
+  # Bash
+  - { enabled: true, installed: true, name: 'timonwong.shellcheck' }
+  # Containers
+  - { enabled: true, installed: true, name: 'ms-azuretools.vscode-docker' }
+  - { enabled: true, installed: true, name: 'ms-vscode-remote.remote-containers' }
+  # CMake
+  - { enabled: true, installed: true, name: 'maelvalais.autoconf' }
+  - { enabled: true, installed: true, name: 'josetr.cmake-language-support-vscode' }
+  # C/CPP
+  - { enabled: true, installed: true, name: 'jeff-hykin.better-cpp-syntax' }
+  - { enabled: true, installed: true, name: 'ms-vscode.cpptools' }
+  - { enabled: false, installed: false, name: 'ms-vscode.cpptools-extension-pack' }
+  # Go
+  - { enabled: true, installed: true,  name: 'golang.Go' }
+  # Markdown
+  - { enabled: false, installed: true,  name: 'shd101wyy.markdown-preview-enhanced' }
+  # Python
+  - { enabled: true, installed: true,  name: 'ms-python.debugpy' }
+  - { enabled: true, installed: true,  name: 'ms-python.flake8' }
+  - { enabled: true, installed: true,  name: 'ms-python.isort' }
+  - { enabled: true, installed: true,  name: 'ms-python.python' }
+  - { enabled: true, installed: true,  name: 'ms-python.vscode-pylance' }
+
+  # Extensions for specific Projects
+  # http://github.com/ComplianceAsCode/content
+  - { enabled: true, installed: true,  name: 'ggbecker.content-navigator' }
+  - { enabled: true, installed: true,  name: 'gitpod.gitpod-desktop' }
+
+# You can have more folders in the same Workspace or more Workspaces.
+# In this case, we are including the a folder in the existing workspace.
+vscode_workspaces:
+  - { enabled: false, state: 'directory', action: 'add', name: 'MyReposFolder',
+      path: '/home/myuser/my_repos_folder' }
 ...
