@@ -1,8 +1,8 @@
 galaxy_info:
   author: Marcus Burghardt
-  description: Role for ensuring VSCODE is ready to be used.
+  description: Role to install and configure VSCode.
   license: MPL
-  min_ansible_version: 2.9
+  min_ansible_version: 2.16
   platforms:
     - name: EL
       versions:
@@ -15,4 +15,3 @@ galaxy_info:
     - devop
     - vscode
 dependencies: []
-  

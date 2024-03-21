@@ -1,9 +1,5 @@
 ---
-# This file has the custom configurations for:
-# redhat/centos/fedora
+# This file has the custom configurations for redhat and fedora.
 
 ansible_python_interpreter: /usr/bin/python3
-
-vscode_workspaces_folder: "{{ ansible_facts['user_dir'] }}/.config/Code/Workspaces"
-vscode_workspaces_config_file: "workspace.json"
 ...
