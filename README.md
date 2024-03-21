@@ -6,8 +6,8 @@ We can manage extensions and workspaces through variables, using the existing
 standards defined in "defaults/main.yml" or overridden them in a playbook, for example.  
 
 This role will:  
-- Ensure the Official Repository for VSCODE;
-- Ensure VSCODE is installed and updated from the repository;
+- Ensure the Official Repository for VSCode;
+- Ensure VSCode is installed and updated from official repository;
 - Ensure the desired state for the defined extensions;
 
 To install this role:  
@@ -44,8 +44,8 @@ For this example, lets call this playbook file as "ansible_vscode.yml":
 ---
 - hosts: linux
   vars:
-    - available_tasks:
-      - { enabled: True,  name: 'configure_vscode' }
+    - vscode_tasks:
+      - { enabled: true,  name: 'configure_vscode' }
   roles:
     - marcusburghardt.ansible_role_vscode
 
@@ -63,13 +63,6 @@ License
 This Source Code Form is subject to the terms of the Mozilla Public  
 License, v. 2.0. If a copy of the MPL was not distributed with this  
 file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
-Interesting References
-------------------
-
-ComplianceAsCode Extension
-- https://marketplace.visualstudio.com/items?itemName=ggbecker.content-navigator
-- https://complianceascode.github.io/template/2019/12/19/content-navigator-a-vscode-extension.html
 
 Author Information
 ------------------
