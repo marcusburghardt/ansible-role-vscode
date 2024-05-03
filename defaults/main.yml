@@ -5,8 +5,9 @@
 # The default method is "sudo". So, ensure your username has sudo permissions to install
 # packages and change system files, such as repository files.
 vscode_tasks:
-  - { enabled: true, name: 'install_vscode' }   # Requires -K option
-  - { enabled: true, name: 'configure_vscode' }
+  - { enabled: true, name: 'install_vscode' }       # Requires -K option
+  - { enabled: true, name: 'configure_extensions' }
+  - { enabled: true, name: 'configure_workspaces' }
 
 # You can have more folders in the same Workspace or more Workspaces.
 # In this case, we are including the a folder in the existing workspace.

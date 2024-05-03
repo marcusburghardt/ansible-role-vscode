@@ -1,0 +1,29 @@
+---
+- name: "{{ role_name }} | {{ task.name }} | Ensure the desired extensions are installed in VSCode"
+  ansible.builtin.command:
+    argv:
+      - 'code'
+      - '--install-extension'
+      - '{{ item.name }}'
+  loop: '{{ vscode_extensions }}'
+  register: result_vscode_extensions_add
+  changed_when: "'was successfully installed' in result_vscode_extensions_add.stdout"
+  failed_when: result_vscode_extensions_add.rc not in [0,1]
+  when:
+    - item.enabled
+    - item.installed
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure the undesired extensions are uninstalled in VSCode"
+  ansible.builtin.command:
+    argv:
+      - 'code'
+      - '--uninstall-extension'
+      - "{{ item.name }}"
+  loop: "{{ vscode_extensions }}"
+  register: result_vscode_extensions_remove
+  changed_when: "'was successfully uninstalled' in result_vscode_extensions_remove.stdout"
+  failed_when: result_vscode_extensions_remove.rc not in [0,1]
+  when:
+    - item.enabled
+    - not item.installed
+...

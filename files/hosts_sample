@@ -1,6 +1,14 @@
 [linux:children]
-configure_vscode
+install_vscode
+configure_extensions
+configure_workspaces
 
 # Here you add the hosts in the desired tasks
-[configure_vscode]
+[configure_install_vscode]
+localhost ansible_connection=local
+
+[configure_extensions]
+localhost ansible_connection=local
+
+[configure_workspaces]
 localhost ansible_connection=local
