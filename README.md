@@ -9,6 +9,8 @@ This role will:
 - Ensure the Official Repository for VSCode;
 - Ensure VSCode is installed and updated from official repository;
 - Ensure the desired state for the defined extensions;
+- Ensure the desired Worspaces are configured;
+- Ensure the desired User Settings are set;
 
 To install this role:  
 $ ansible-galaxy role install marcusburghardt.vscode
@@ -46,7 +48,9 @@ For this example, lets call this playbook file as "ansible_vscode.yml":
   vars:
     - vscode_tasks:
       - { enabled: true, name: 'install_vscode' }   # Requires -K option
-      - { enabled: true, name: 'configure_vscode' }
+      - { enabled: true, name: 'configure_extensions' }
+      - { enabled: true, name: 'configure_workspaces' }
+      - { enabled: true, name: 'configure_user_settings' }
   roles:
     - marcusburghardt.vscode
 

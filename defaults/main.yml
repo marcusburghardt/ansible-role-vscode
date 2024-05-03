@@ -8,12 +8,21 @@ vscode_tasks:
   - { enabled: true, name: 'install_vscode' }       # Requires -K option
   - { enabled: true, name: 'configure_extensions' }
   - { enabled: true, name: 'configure_workspaces' }
+  - { enabled: true, name: 'ensure_user_settings' }
 
 # You can have more folders in the same Workspace or more Workspaces.
 # In this case, we are including the a folder in the existing workspace.
 vscode_workspaces:
   - { enabled: false, state: 'directory', action: 'add', name: 'MyReposFolder',
       path: "{{ ansible_facts['user_dir'] }}/my_repos_folder" }
+
+vscode_user_settings:
+  - { enabled: false, action: 'add', section: 'files.associations', key: "bash.template", value: "shellscript" }
+  - { enabled: false, action: 'add', section: 'files.associations', key: "ansible.template", value: "ansible" }
+  - { enabled: false, action: 'add', section: 'files.associations', key: "*bash.jinja", value: "shellscript" }
+  - { enabled: false, action: 'add', section: 'files.associations', key: "*ansible.jinja", value: "ansible" }
+  - { enabled: false, action: 'add', section: 'files.autoGuessEncoding', key: false, value: "true" }
+  - { enabled: false, action: 'add', section: 'python.linting.flake8Enabled', key: false, value: "true" }
 
 # The "installed" parameter determines if the extension will be installed or removed.
 # Note that if your VSCode is opened, may be needed to restart it to commit some extensions

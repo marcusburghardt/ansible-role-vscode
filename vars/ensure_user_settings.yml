@@ -1,0 +1,6 @@
+---
+# This file has the custom configurations for configure_vscode task.
+
+vscode_user_settings_folder: "{{ ansible_facts['user_dir'] }}/.config/Code/User"
+vscode_user_settings_config_file: "settings.json"
+...

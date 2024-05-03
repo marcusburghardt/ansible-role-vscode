@@ -2,6 +2,7 @@
 install_vscode
 configure_extensions
 configure_workspaces
+ensure_user_settings
 
 # Here you add the hosts in the desired tasks
 [configure_install_vscode]
@@ -11,4 +12,7 @@ localhost ansible_connection=local
 localhost ansible_connection=local
 
 [configure_workspaces]
+localhost ansible_connection=local
+
+[ensure_user_settings]
 localhost ansible_connection=local

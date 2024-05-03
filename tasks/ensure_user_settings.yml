@@ -1,0 +1,42 @@
+---
+- name: "{{ role_name }} | {{ task.name }} | Ensure the User folder for VSCode"
+  ansible.builtin.file:
+    path: "{{ vscode_user_settings_folder }}"
+    state: directory
+    mode: '0750'
+  register: result_vscode_user_settings_folder
+  when: result_install_vscode is success
+
+- name: "{{ role_name }} | {{ task.name }} | Locate the User {{ vscode_user_settings_config_file }} file of VSCode"
+  ansible.builtin.find:
+    paths: "{{ vscode_user_settings_folder }}"
+    recurse: true
+    patterns: "{{ vscode_user_settings_config_file }}"
+  register: result_vscode_user_settings_file
+  when: result_vscode_user_settings_folder is success
+
+- name: "{{ role_name }} | {{ task.name }} | First execution of VSCode"
+  ansible.builtin.debug:
+    msg:
+      - "If VSCode was just installed, is necessary to open it to create the initial configuration."
+  when: result_vscode_user_settings_file.matched == 0
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure User Preferences are set in VSCode"
+  ansible.builtin.command:
+    chdir: "{{ role_path }}/files"
+    argv:
+      - "{{ ansible_python_interpreter }}"
+      - vscode_settings.py
+      - "{{ item.action }}"
+      - "{{ result_vscode_user_settings_file.files[0].path }}"
+      - "{{ item.section }}"
+      - "{{ item.key }}"
+      - "{{ item.value }}"
+  loop: "{{ vscode_user_settings }}"
+  register: result_user_settings_reference
+  changed_when: result_user_settings_reference.rc == 1
+  failed_when: result_user_settings_reference.rc in [2,3]
+  when:
+    - item.enabled
+    - result_vscode_user_settings_file.matched == 1
+...
