@@ -1,0 +1,27 @@
+---
+- name: "{{ role_name }} | {{ task.name }} | Ensure YUM/DNF repository for VSCode"
+  become: true
+  ansible.builtin.yum_repository:
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.repo }}"
+    gpgcheck: "{{ item.gpgcheck }}"
+    gpgkey: "{{ item.gpgkey }}"
+    enabled: true
+    state: "{{ item.state }}"
+  loop: "{{ vscode_repo }}"
+  register: result_repo_vscode
+  when:
+    - item.enabled
+    - ansible_facts['os_family']|lower == "redhat"
+
+- name: "{{ role_name }} | {{ task.name }} | Ensure VSCode is installed"
+  become: true
+  ansible.builtin.package:
+    name: 'code'
+    state: present
+  register: result_install_vscode
+  when:
+    - ansible_facts['system']|lower == "linux"
+    - result_repo_vscode is success
+...

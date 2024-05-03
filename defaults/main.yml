@@ -5,7 +5,8 @@
 # The default method is "sudo". So, ensure your username has sudo permissions to install
 # packages and change system files, such as repository files.
 vscode_tasks:
-  - { enabled: true, name: 'configure_vscode' }  # Requires -K option
+  - { enabled: true, name: 'install_vscode' }   # Requires -K option
+  - { enabled: true, name: 'configure_vscode' }
 
 # This is just an example. More information in vars/configure_vscode.yml
 vscode_workspaces:

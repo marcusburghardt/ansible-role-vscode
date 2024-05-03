@@ -45,7 +45,8 @@ For this example, lets call this playbook file as "ansible_vscode.yml":
 - hosts: linux
   vars:
     - vscode_tasks:
-      - { enabled: true,  name: 'configure_vscode' }
+      - { enabled: true, name: 'install_vscode' }   # Requires -K option
+      - { enabled: true, name: 'configure_vscode' }
   roles:
     - marcusburghardt.vscode
 

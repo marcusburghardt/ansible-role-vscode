@@ -1,0 +1,10 @@
+---
+# This file has the custom configurations for configure_vscode task.
+
+vscode_repo:
+  - { enabled: true,  state: 'present', name: 'VSCode',
+      description: 'Visual Studio Code',
+      repo: 'https://packages.microsoft.com/yumrepos/vscode',
+      gpgcheck: '1',
+      gpgkey: 'https://packages.microsoft.com/keys/microsoft.asc' }
+...
