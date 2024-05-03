@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# This is a very simple script created to deal with VSCode JSON files.
+# This is a very simple script created to deal with VSCode JSON files via Ansible Role.
 # Parameters are not validated, as they are hardcoded in this Ansible Module.
 # So, be careful if using it manually or if modifying the Module.
 
@@ -16,19 +16,24 @@ if len(sys.argv) == 6:
 else:
     print("Syntax: ", sys.argv[0], " <add|remove> <file> <section> <parameter> <value>")
     print("Syntax: ", sys.argv[0], " add /tmp/workstaces.json folders path /home/user/DEV")
-    sys.exit(1)
+    sys.exit(2)
 
-with open(json_file, "r+") as roFile:
-    data = json.load(roFile)
-    roFile.close
+try:
+    with open(json_file, "r+") as roFile:
+        data = json.load(roFile)
+        roFile.close
+except FileNotFoundError:
+    print(f'Cannot load {json_file}.')
+    sys.exit(2)
 
 entry = {parameter: value}
+changed = False
 
 if action == 'add':
     try:
         if entry not in data[section]:
             data[section].append(entry)
-            sys.exit(1)
+            changed = True
     except SyntaxError:
         print("Cannot add the entry. Possibly some argument is wrong.")
         sys.exit(2)
@@ -36,7 +41,7 @@ elif action == 'remove':
     try:
         if entry in data[section]:
             data[section].remove(entry)
-            sys.exit(1)
+            changed = True
     except SyntaxError:
         print("Cannot remove the entry. Possibly some argument is wrong or the entry doesn't exist.")
         sys.exit(2)
@@ -49,4 +54,8 @@ with open(json_file, "w") as rwFile:
     rwFile.write(json.dumps(data, indent=8, sort_keys=True))
     rwFile.truncate()
     rwFile.close
-sys.exit(0)
+
+if changed:
+    sys.exit(1)
+else:
+    sys.exit(0)
