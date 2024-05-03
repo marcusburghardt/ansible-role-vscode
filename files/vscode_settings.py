@@ -1,8 +1,9 @@
+#!/usr/bin/python3
+
 # This is a very simple script created to deal with VSCode JSON files.
 # Parameters are not validated, as they are hardcoded in this Ansible Module.
 # So, be careful if using it manually or if modifying the Module.
 
-#!/usr/bin/python
 import json
 import sys
 
@@ -14,7 +15,7 @@ if len(sys.argv) == 6:
     value = sys.argv[5]
 else:
     print("Syntax: ", sys.argv[0], " <add|remove> <file> <section> <parameter> <value>")
-    print("Syntax: ", sys.argv[0], " add /tmp/workstaces.json folders path /home/user/DEV/BUG000_TTT")
+    print("Syntax: ", sys.argv[0], " add /tmp/workstaces.json folders path /home/user/DEV")
     sys.exit(1)
 
 with open(json_file, "r+") as roFile:
@@ -29,7 +30,6 @@ if action == 'add':
             data[section].append(entry)
     except SyntaxError:
         print("Cannot add the entry. Possibly some argument is wrong.")
-        # I know. This script was made to work with this Ansible role.
         sys.exit(1)
 elif action == 'remove':
     try:

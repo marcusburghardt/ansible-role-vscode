@@ -9,6 +9,6 @@ vscode_tasks:
 
 # This is just an example. More information in vars/configure_vscode.yml
 vscode_workspaces:
-  - { enabled: false, state: 'directory', action: 'add', name: 'OpenSCAP',
-      path: "{{ ansible_facts['user_dir'] }}/OpenSCAP" }
+  - { enabled: false, state: 'directory', action: 'add', name: 'CaC',
+      path: "{{ ansible_facts['user_dir'] }}/CaC" }
 ...

@@ -11,7 +11,7 @@ This role will:
 - Ensure the desired state for the defined extensions;
 
 To install this role:  
-$ ansible-galaxy role install marcusburghardt.ansible_role_vscode
+$ ansible-galaxy role install marcusburghardt.vscode
 
 Requirements
 ------------
@@ -47,7 +47,7 @@ For this example, lets call this playbook file as "ansible_vscode.yml":
     - vscode_tasks:
       - { enabled: true,  name: 'configure_vscode' }
   roles:
-    - marcusburghardt.ansible_role_vscode
+    - marcusburghardt.vscode
 
 Considering the inventory file is in the same folder and is called "hosts_vscode",  
 you can run this command to see the magic happen:  
