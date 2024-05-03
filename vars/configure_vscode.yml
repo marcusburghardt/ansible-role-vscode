@@ -15,7 +15,6 @@ vscode_extensions:
   - { enabled: true, installed: true, name: 'adamvoss.vscode-languagetool-en' }
   - { enabled: true, installed: true, name: 'adamvoss.vscode-languagetool' }
   - { enabled: true, installed: true, name: 'streetsidesoftware.code-spell-checker' }
-  - { enabled: false, installed: true, name: 'cschlosser.doxdocgen' }
 
   # Extensions for better navigation
   - { enabled: true, installed: true, name: 'eamodio.gitlens' }
@@ -35,28 +34,21 @@ vscode_extensions:
   - { enabled: true, installed: true, name: 'maelvalais.autoconf' }
   - { enabled: true, installed: true, name: 'josetr.cmake-language-support-vscode' }
   # C/CPP
-  - { enabled: true, installed: true, name: 'jeff-hykin.better-cpp-syntax' }
+  - { enabled: false, installed: true, name: 'jeff-hykin.better-cpp-syntax' }
   - { enabled: true, installed: true, name: 'ms-vscode.cpptools' }
-  - { enabled: false, installed: false, name: 'ms-vscode.cpptools-extension-pack' }
   # Go
-  - { enabled: true, installed: true,  name: 'golang.Go' }
+  - { enabled: true, installed: true, name: 'golang.Go' }
   # Markdown
-  - { enabled: false, installed: true,  name: 'shd101wyy.markdown-preview-enhanced' }
+  - { enabled: false, installed: true, name: 'shd101wyy.markdown-preview-enhanced' }
   # Python
-  - { enabled: true, installed: true,  name: 'ms-python.debugpy' }
-  - { enabled: true, installed: true,  name: 'ms-python.flake8' }
-  - { enabled: true, installed: true,  name: 'ms-python.isort' }
-  - { enabled: true, installed: true,  name: 'ms-python.python' }
-  - { enabled: true, installed: true,  name: 'ms-python.vscode-pylance' }
+  - { enabled: true, installed: true, name: 'ms-python.debugpy' }
+  - { enabled: true, installed: true, name: 'ms-python.flake8' }
+  - { enabled: true, installed: true, name: 'ms-python.isort' }
+  - { enabled: true, installed: true, name: 'ms-python.python' }
+  - { enabled: true, installed: true, name: 'ms-python.vscode-pylance' }
 
   # Extensions for specific Projects
   # http://github.com/ComplianceAsCode/content
-  - { enabled: true, installed: true,  name: 'ggbecker.content-navigator' }
-  - { enabled: true, installed: true,  name: 'gitpod.gitpod-desktop' }
-
-# You can have more folders in the same Workspace or more Workspaces.
-# In this case, we are including the a folder in the existing workspace.
-vscode_workspaces:
-  - { enabled: false, state: 'directory', action: 'add', name: 'MyReposFolder',
-      path: '/home/myuser/my_repos_folder' }
+  - { enabled: false, installed: true, name: 'ggbecker.content-navigator' }
+  - { enabled: false, installed: true, name: 'gitpod.gitpod-desktop' }
 ...
