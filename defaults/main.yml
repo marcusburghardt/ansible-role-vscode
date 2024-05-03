@@ -8,8 +8,9 @@ vscode_tasks:
   - { enabled: true, name: 'install_vscode' }   # Requires -K option
   - { enabled: true, name: 'configure_vscode' }
 
-# This is just an example. More information in vars/configure_vscode.yml
+# You can have more folders in the same Workspace or more Workspaces.
+# In this case, we are including the a folder in the existing workspace.
 vscode_workspaces:
-  - { enabled: false, state: 'directory', action: 'add', name: 'CaC',
-      path: "{{ ansible_facts['user_dir'] }}/CaC" }
+  - { enabled: false, state: 'directory', action: 'add', name: 'MyReposFolder',
+      path: "{{ ansible_facts['user_dir'] }}/my_repos_folder" }
 ...

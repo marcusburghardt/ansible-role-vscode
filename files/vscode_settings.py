@@ -28,18 +28,21 @@ if action == 'add':
     try:
         if entry not in data[section]:
             data[section].append(entry)
+            sys.exit(1)
     except SyntaxError:
         print("Cannot add the entry. Possibly some argument is wrong.")
-        sys.exit(1)
+        sys.exit(2)
 elif action == 'remove':
     try:
-        data[section].remove(entry)
+        if entry in data[section]:
+            data[section].remove(entry)
+            sys.exit(1)
     except SyntaxError:
         print("Cannot remove the entry. Possibly some argument is wrong or the entry doesn't exist.")
-        sys.exit(1)
+        sys.exit(2)
 else:
     print("Invalid Action")
-    sys.exit(2)
+    sys.exit(3)
 
 with open(json_file, "w") as rwFile:
     rwFile.seek(0)
